@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from pathlib import Path, os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,6 +25,8 @@ SECRET_KEY = 'n_5onnt)6@)kx-_^&%*-h%&gywcp5p(^5njt)&3jy*try%qkl2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ALLOWED_HOSTS = ['*']
 

@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView,CreateView,UpdateView,DeleteView,TemplateView, FormView
+from django.views.generic import ListView, DetailView,CreateView,DeleteView,TemplateView, FormView
 from .models import Modelo
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -13,12 +13,35 @@ from django.http import HttpResponseRedirect, JsonResponse, request
 class HomeListView(ListView):
     model = Modelo
     template_name = 'home.html'
-    context_object_name = 'Modelo'
+    context_object_name = 'Modelo'  
 
 class CVListView(TemplateView):
     model = Modelo
     template_name = 'cv.html'
     context_object_name = 'Modelo'
+
+class ITLView(TemplateView):
+    model = Modelo
+    template_name = 'itl.html'
+    context_object_name = 'Modelo'
+
+class cvCreateView(CreateView):
+    model = Modelo
+    template_name = "agregar.html"
+    fields = '__all__'
+    success_url = reverse_lazy('home')
+
+# class cvUpdateView(UpdateView):
+#     model = Modelo
+#     template_name = "editar.html"
+#     fields = '__all__'
+#     success_url = reverse_lazy('home')
+
+class cvDeleteView(LoginRequiredMixin,DeleteView):
+    model = Modelo
+    template_name = 'eliminar.html'
+    context_object_name = 'Modelo'
+    success_url = reverse_lazy('home')
 
 #Registro para crear nuevo usuario
 def registro(request):

@@ -10,3 +10,6 @@ class Modelo(models.Model):
 
     def __str__(self):
         return self.nombre
+
+def get_absolute_url(self):
+        return reverse('modelos', args=[str(self.id)])

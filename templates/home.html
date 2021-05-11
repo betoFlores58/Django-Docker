@@ -5,6 +5,13 @@
         <div class="d-grid gap-2 mx-auto">
             <a class="btn btn-success" href="{% url 'cv' %}" role="button">Curriculum Vitae</a>
             <a class="btn btn-warning" href="{% url 'registro' %}" role="button">Registro</a>
+            <a class="btn btn-danger" href="{% url 'itl' %}" role="button">ITL Info</a>
         </div>
+    </div>
+    <br>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a class="btn btn-success" href="{% url 'nueva' %}" role="button">Agregar</a>
+        <!-- <a class="btn btn-info" href="{% url 'editar' modelos.pk %}" role="button">Editar</a>
+        <a class="btn btn-danger" href="{% url 'eliminar' modelos.pk %}" role="button">Eliminar</a>-->
     </div>
 {% endblock %}
