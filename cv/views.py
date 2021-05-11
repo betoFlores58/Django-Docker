@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView,CreateView,DeleteView,TemplateView, FormView
+from django.views.generic import ListView, DetailView,TemplateView, FormView,CreateView,UpdateView, DeleteView
 from .models import Modelo
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
@@ -29,13 +29,15 @@ class cvCreateView(CreateView):
     model = Modelo
     template_name = "agregar.html"
     fields = '__all__'
+    context_object_name = 'Modelo'
     success_url = reverse_lazy('home')
 
-# class cvUpdateView(UpdateView):
-#     model = Modelo
-#     template_name = "editar.html"
-#     fields = '__all__'
-#     success_url = reverse_lazy('home')
+class cvUpdateView(LoginRequiredMixin,UpdateView):
+    model = Modelo
+    template_name = "editar.html"
+    fields = '__all__'
+    context_object_name = 'Modelo'
+    success_url = reverse_lazy('home')
 
 class cvDeleteView(LoginRequiredMixin,DeleteView):
     model = Modelo

@@ -1,16 +1,25 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block contenido %} 
-<br>
-<form method="post" novalidate>{% csrf_token %}
-    <div class="row">
-        <div class="col-11">
-            {{ forms }}
-        </div>
-    </div>
-    <button type="submit" class="btn btn-danger">Agregar</button>
-    <a href="{% url 'home' %}">
-        <button type="button" class="btn btn-primary">Regresar</button>
-    </a>
-</form>
-<br>
+    <style>
+        body{
+            background: #005C97;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to top, #363795, #005C97);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to top, #363795, #005C97); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+    </style>
+    <br>
+    <body>
+        <form method="post" novalidate>{% csrf_token %}
+            <div>
+                <div>
+                    <h2 style="color: chartreuse;">Agrega un nuevo CV</h2>
+                    {{form}}
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success">Agregar</button>
+        </form>
+    </body>
+        <br>
 {% endblock %} 

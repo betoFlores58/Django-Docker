@@ -2,23 +2,33 @@
 {% block contenido %} 
 {% load static %}
 <br>
-<div class="card text-center">
-    <img width="200px" height="250px" style="padding-left: 450px;padding-right: 450px;" src="{% static 'img/fotoCV.jpeg' %}" class="card-img-top" alt="...">
+<body style="background-color: blue;">
+    <div class="card text-center">
+        <img width="200px" height="250px" style="padding-left: 450px;padding-right: 450px; border-width: 30px;border-color: teal;" src="{% static 'img/fotoCV.jpeg' %}" class="card-img-top" alt="...">
         <div class="card-body">
-    <h5 class="card-title">ALBERTO VILLARREAL FLORES</h5>
-    <p class="card-text">INSTITUTO TECNOLÓGICO DE LA LAGUNA</p>
-</div>
-<ul class="list-group list-group-flush">
-    <li class="list-group-item"><strong>Dirección: </strong><br>
-        Blvd. Revolución y Av. Instituto Tecnológico de La Laguna, Torreón, Coahuila, C.P. 27000</li>
-    <li class="list-group-item"><strong>Email: </strong><br>
-        webmaster@correo.itlalaguna.edu.mx
-    </li>
-    <li class="list-group-item"><strong>Teléfono: </strong><br> 52 (871) 705-13-13</li>
-</ul>
-    <div class="card-body">
-        <a href="http://www.itlalaguna.edu.mx/" role="button" class="card-link">Ir al sitio oficial</a>
+            <h5 class="card-title">ALBERTO VILLARREAL FLORES</h5>
+            <p class="card-text">Licenciatura</p>
+        </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Dirección: </strong><br>
+            Blvd. Revolución y Av. Instituto Tecnológico de La Laguna, Torreón, Coahuila, C.P. 27000</li>
+        <li class="list-group-item"><strong>Email: </strong><br>
+            dev.betoflores1358@gmail.com
+        </li>
+        <li class="list-group-item"><strong>Teléfono: </strong><br> 52 (871) 233-50-75</li>
+                <li class="list-group-item"><strong>Experiencia: </strong><br>
+                    1.5 años como desarrollador. <br>
+                    3 meses como tester manual y automation. <br>
+                    <strong>
+                        Lenguajes:
+                    </strong>
+                    {{Modelos.nombre}}
+                </li>
+    </ul>
+    <div style="background-color: gray;" class="card-body">
+        <a style="color: black;" href="https://github.com/betoFlores58" target="_blank" role="button" class="card-link">Github</a>
     </div>
-</div>
+    </div>
+</body> 
 <br>
 {% endblock %}

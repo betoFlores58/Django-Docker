@@ -1,17 +1,40 @@
 {% extends 'base.html' %}
 {% block contenido %}
-<br> 
+{% load static %}
+<br>
+{% if user.is_authenticated %} 
     <div class="container">
         <div class="d-grid gap-2 mx-auto">
             <a class="btn btn-success" href="{% url 'cv' %}" role="button">Curriculum Vitae</a>
-            <a class="btn btn-warning" href="{% url 'registro' %}" role="button">Registro</a>
-            <a class="btn btn-danger" href="{% url 'itl' %}" role="button">ITL Info</a>
+            <a class="btn btn-warning" href="{% url 'registro' %}" role="button"><strong>+</strong> Crear otro usuario</a>
+            <a class="btn btn-danger" href="{% url 'itl' %}" role="button">TecNM Campus Laguna Info</a>
         </div>
     </div>
     <br>
-    <div class="btn-group" role="group" aria-label="Basic example">
-        <a class="btn btn-success" href="{% url 'nueva' %}" role="button">Agregar</a>
-        <!-- <a class="btn btn-info" href="{% url 'editar' modelos.pk %}" role="button">Editar</a>
-        <a class="btn btn-danger" href="{% url 'eliminar' modelos.pk %}" role="button">Eliminar</a>-->
+    <div class="card-group">
+        <div style="height: 455px;width: 150px;" class="card">
+            <img  style="padding-left: 150px;padding-right: 150px;" src="{% static 'img/fotoCV.jpeg' %}" class="card-img-top" alt="Alberto">
+            <div class="card-body">
+            <h5 class="card-title"><a href="{% url 'cv' %}"> CV Alberto V Flores</a></h5>
+            </div>
+        </div>
+        <div class="card">
+            <img style="padding-left: 100px;padding-right: 100px;padding-top: 80px;" src="{% static 'img/tecnm.png' %}" class="card-img-top" alt="ITL">
+            <div class="card-body">
+                <br>
+            <h5 class="card-title"><a href="{% url 'itl' %}">TecNM Campus Laguna</a></h5>
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="btn-group" role="group">
+        <a class="btn btn-success" href="{% url 'nuevo' %}" role="button">Add new CV</a>
+    </div>
+    <br>
+{% else %}
+    <center>
+        <h2><strong>NECESITAS INICIAR SÈSION</strong></h2>
+        <a class="btn btn-warning" href="{% url 'registro' %}" role="button"><strong>+</strong> Crear un usuario</a>
+    </center>
+{% endif %}
 {% endblock %}
