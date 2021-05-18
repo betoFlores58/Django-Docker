@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +29,7 @@
                         <h2>Registro de usuario</h2>
                         <hr>
                         <form action="" method="post"> {% csrf_token %}
-                            {{ form }}
+                            {{ form|crispy }}
                             <br><br>
                             <input type="submit" value="Registrar" class="btn btn-warning float-right">
                             <a style="margin-left: 70%;" href="{% url 'home' %}"><i class="fa fa-home"></i> Ir a home</a> |                           

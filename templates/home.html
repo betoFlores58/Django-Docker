@@ -2,6 +2,10 @@
 {% block contenido %}
 {% load static %}
 <br>
+<script src="{% static '/js/alert.js' %}" type="text/javascript"></script>
+<script src="{% static '/js/foto.js' %}" type="text/javascript"></script>
+<body>
+<br>
 {% if user.is_authenticated %} 
     <div class="container">
         <div class="d-grid gap-2 mx-auto">
@@ -11,7 +15,7 @@
         </div>
     </div>
     <br>
-    <div class="card-group">
+    <div class="card-group shake-slow">
         <div style="height: 455px;width: 150px;" class="card">
             <img  style="padding-left: 150px;padding-right: 150px;" src="{% static 'img/fotoCV.jpeg' %}" class="card-img-top" alt="Alberto">
             <div class="card-body">
@@ -28,7 +32,12 @@
     </div>
     <br>
     <div class="btn-group" role="group">
-        <a class="btn btn-success" href="{% url 'nuevo' %}" role="button">Add new CV</a>
+        <div>
+            <a class="btn btn-success shake-crazy" href="{% url 'nuevo' %}" role="button">Add new CV</a>
+        </div>
+        &nbsp;
+        <a class="btn btn-warning" role="button">Editar</a>
+        <a class="btn btn-danger" role="button">Eliminar</a>
     </div>
     <br>
 {% else %}
@@ -37,4 +46,12 @@
         <a class="btn btn-warning" href="{% url 'registro' %}" role="button"><strong>+</strong> Crear un usuario</a>
     </center>
 {% endif %}
+<br>
+<footer style="padding: 18px; border: 10px;border-style: dashed;border-width: 10px;border-color: purple;">
+    <p><strong>Autor:</strong> Alberto Villarreal Flroes -> <a href="https://github.com/betoFlores58"><i class="fa fa-github"></i>GitHub</a></p>
+    <p>
+        <script src="{% static '/js/hora.js' %}" type="text/javascript"></script>
+    </p>
+</footer>
 {% endblock %}
+</body>

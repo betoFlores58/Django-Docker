@@ -7,3 +7,10 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username","first_name","last_name","email","password1","password2","telefono",]
+
+class ResetPasswordForm(forms.Form):
+    email=forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Ingrese un email',
+        'class': 'form-control',
+        'autocomplete': 'off'
+    }))

@@ -7,7 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CustomUserCreationForm
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect, JsonResponse, request
+from .forms import ResetPasswordForm
 
 # Create your views here.
 class HomeListView(ListView):
@@ -60,3 +62,47 @@ def registro(request):
             return redirect(to="home")
         data["form"]=formulario
     return render(request,'registration/registro.html',data)
+
+#Cambiar contraseña de un usuario
+class UserChangePasswordView(LoginRequiredMixin, FormView):
+    model = User
+    form_class = PasswordChangeForm
+    template_name = 'change_password.html'
+    success_url = reverse_lazy('login') 
+
+    def get_form(self, form_class=None):
+        form = PasswordChangeForm(user=self.request.user)
+        return form
+
+    def post(self,request,*args,**kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'edit':
+                form = PasswordChangeForm(user=request.user,data=request.POST)
+                if form.is_valid():
+                    form.save()
+                else:
+                    data['error'] = form.errors
+            else:
+                data['error'] = 'No ha ingresado a ninguna opcion'
+        except Exception as e:
+            data ['error'] = str(e)
+        return JsonResponse(data)
+
+class ResetPasswordView(LoginRequiredMixin,FormView):
+    form_class = ResetPasswordForm
+    template_name = 'registration/password_reset_form.html'
+    success_url = reverse_lazy('login') 
+
+    def dispatch(self,request, *args, **kwargs):
+        return super().dispatch(request,*args,**kwargs)
+
+    def form_valid(self,form):
+        pass
+        return HttpResponseRedirect(self.success_url)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Reseteo de contraseña'
+        return context

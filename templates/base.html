@@ -1,5 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="csshake.min.css">
+<link rel="stylesheet" type="text/css" href="csshake-slow.min.css">
 {% load static %}
 <nav class="navbar nav-pills navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
@@ -17,15 +19,21 @@
         <li class="nav-item">
             <a class="nav-link" href="{% url 'itl' %}">ITL</a>
         </li> -->
-        <!--{% if user.is_authenticated %}-->
+        {% if user.is_authenticated %}
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'logout'%}"><i class="fa fa-user"></i> {{user.username}}</a>
         </li>
-        <!--{% else %}-->
+        <li style="padding-left: 850px;" class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'change_password'%}"><i class="fa fa-code"></i> Change Password</a>
+        </li>
+        {% else %}
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="{% url 'login'%}">Iniciar sesión <i class="fa fa-user"></i></a>
         </li>
-        <!--{% endif %}-->
+        <li style="padding-left: 850px;" class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'password_reset'%}"><i class="fa fa-code"></i> Reset Password</a>
+        </li>
+        {% endif %}
     </ul>
     </div>
     </div>
