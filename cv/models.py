@@ -5,6 +5,10 @@ from django.urls import reverse
 class Lenguajes(models.Model):
     nombre = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.nombre
+
+
 class Modelo(models.Model):
     nombre = models.CharField(max_length=80)
     foto = models.TextField()

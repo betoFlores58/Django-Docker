@@ -26,7 +26,7 @@ LOGOUT_REDIRECT_URL = 'home'
 #DECOUPLE Y DECLARAMOS LAS VARIABLES QUE USAREMOS PARA ENVIO DE EMAIL
 #from decouple import config
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_PORT = os.environ.get('PORT_EMAIL')
 EMAIL_USE_TLS = True
@@ -134,3 +134,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_ROOT = "/var/www/myexplame/static/"
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
