@@ -8,9 +8,9 @@ class Lenguajes(models.Model):
     def __str__(self):
         return self.nombre
 
-
 class Modelo(models.Model):
     nombre = models.CharField(max_length=80)
+    #foto = models.ImageField(upload_to='static/img')
     foto = models.TextField()
     educacion = models.CharField(max_length=100)
     experiencia = models.TextField()
