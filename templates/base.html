@@ -15,17 +15,17 @@
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'logout'%}"><i class="fa fa-user"></i> {{user.username}}</a>
+            <a class="nav-link" aria-current="page" href="{% url 'account_logout'%}"><i class="fa fa-user"></i> {{user.username}}</a>
         </li>
         <li style="padding-left: 850px;" class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'change_password'%}"><i class="fa fa-code"></i> Change Password</a>
+            <a class="nav-link" aria-current="page" href="{% url 'account_change_password'%}"><i class="fa fa-code"></i> Change Password</a>
         </li>
         {% else %}
         <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'login'%}">Iniciar sesión <i class="fa fa-user"></i></a>
+            <a class="nav-link" aria-current="page" href="{% url 'account_login'%}">Iniciar sesión <i class="fa fa-user"></i></a>
         </li>
         <li style="padding-left: 850px;" class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'password_reset'%}"><i class="fa fa-code"></i> Reset Password</a>
+            <a class="nav-link" aria-current="page" href="{% url 'account_reset_password'%}"><i class="fa fa-code"></i> Reset Password</a>
         </li>
         {% endif %}
     </ul>

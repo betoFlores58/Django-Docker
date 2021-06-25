@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<br>
+<h1>Extra</h1>
+<div class="container-fluid">
+    <form class="d-flex" enctype="multipart/form-data" action="{% url 'search_results' %}" method="POST">{% csrf_token %}
+                <button class="btn btn-success" type="submit">Search</button>&nbsp;
+                <input class="form-control me-2" type="text" placeholder="Ingresa nombre" name="search" aria-label="Search">
+            </form>
+        <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <br>
+{% for e in model %}
+        <div class="col-auto">
+            <div class="card-group">
+                <div style="height: min-content" class="card">
+                    <div class="card-header">
+                        {{e.nombre}}
+                    </div>
+                    {% if e.foto %}
+                    <img width="" height="290rem" src=" {{ e.foto.url|default_if_none:'#'}}" class="card-img-top" alt="">
+                    {% endif %}
+                    <div class="card-footer">
+                        <small>Educacion: <strong>{{e.educacion}}</strong></small><br>
+                        <small class="text-muted">Experiencia: <strong>{{e.experiencia}}</strong></small><br>
+                        <hr>
+                        <a class="btn btn-warning" href="{% url 'editar' e.pk %}" role="button">Editar</a>
+                        <a class="btn btn-danger" href="{% url 'eliminar' e.pk %}" role="button">Eliminar</a>
+                        <a class="btn btn-primary" href="{% url 'orders' e.pk %}" role="button">Comprar</a>
+                        <hr>
+                        <div class="container-fluid">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %} 
+    </div>
+    <center><h1>Resultados encontrados...</h1></center>
+    <br>
+    {% if search %}
+        <center><h3>Tu buscaste "{{search}}"</h3>
+        <br>
+        {% for result in results %}
+        <span>{{result.nombre}} - {{result.educacion}}</span><br>
+        {% endfor %}
+        </center>
+    {% else %}
+        <h4>No hay resultados</h4>
+    {% endif%}
+</div>
+{% endblock %}

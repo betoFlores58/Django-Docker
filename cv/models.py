@@ -10,8 +10,7 @@ class Lenguajes(models.Model):
 
 class Modelo(models.Model):
     nombre = models.CharField(max_length=80)
-    #foto = models.ImageField(upload_to='static/img')
-    foto = models.TextField()
+    foto = models.ImageField(null=True,blank=True)
     educacion = models.CharField(max_length=100)
     experiencia = models.TextField()
     lenguajes = models.ForeignKey(
@@ -23,6 +22,15 @@ class Modelo(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class Comment(models.Model):
+    post = models.ForeignKey(Modelo,related_name="comments",on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    body = models.TextField(max_length=1000)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
 
 def get_absolute_url(self):
         return reverse('modelos', args=[str(self.id)])

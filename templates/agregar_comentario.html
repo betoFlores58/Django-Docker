@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contenido %} 
+<br>
+<body>
+    <div class="form-group">
+        <form method="post" novalidate>{% csrf_token %}
+    <div class="row">
+        <div class="col-11">
+            <h2 style="font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Agregar nuevo comentario</h2>
+            <span>Usuario: {{user.username}}</span><br>
+            <br>
+            {{form|crispy}}
+        </div>
+    </div>
+<br>
+<button type="submit" class="btn btn-success">Agregar</button>
+</form>
+    </div>
+</body>
+<br>
+{% endblock %} 

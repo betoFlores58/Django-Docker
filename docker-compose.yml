@@ -12,8 +12,12 @@ services:
     web: 
         build: .
         command: python manage.py runserver 0.0.0.0:8000
-        #enviroment:
-        #    - correoNuevo = Juan Perez
+        environment:
+            - datosKey=n_5onnt)6@)kx-_^&%*-h%&gywcp5p(^5njt)&3jy*try%qkl2
+            - USER_MAIL=alu.16130067@correo.itlalaguna.edu.mx
+            - USER_MAIL_PASSWORD=correoITL.
+            - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_51IyPhhGoNLcFbmsUufJQQmwbw8KpjSIC8xu7UEWTGAkohQ81OhfRbsmQfY8QE69LOjPN8bXdXpBn8TW3Er6i848M007qAdqyKY
+            - STRIPE_TEST_SECRET_KEY=sk_test_51IyPhhGoNLcFbmsUvvNWq5cxMwuOUZGvvVVtIliaPy4yVSpFM5aO5mLvVF0H7aTBWQVQ9OHWF6NHNqxMXe8l7f3200ZNDvOnBW
         volumes:
             - .:/code
         ports:

@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block contenido %} 
+<br><br>
+<h1>Ordenes</h1>
+<p>Compra por: $ {{productos.precio}}</p>
+<form action="{% url 'charge' %}" method="post">
+    {% csrf_token %}
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{stripe_key}}"
+        data-description="Ingresa tu tarjeta"
+        data-amount="{{productos.precio}}"
+        data-locale="auto">
+    </script>
+</form>
+{% endblock contenido %} 

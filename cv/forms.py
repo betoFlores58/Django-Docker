@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Comment
+
 
 class CustomUserCreationForm(UserCreationForm):
     telefono = forms.IntegerField(label = "telefono")
@@ -14,3 +16,12 @@ class ResetPasswordForm(forms.Form):
         'class': 'form-control',
         'autocomplete': 'off'
     }))
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name','body')
+        widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control','value':'-'}),
+            'body': forms.Textarea(attrs={'class':'form-control'}),
+        }

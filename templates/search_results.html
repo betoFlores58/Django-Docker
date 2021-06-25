@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block contenido %} 
+<br>
+    <center><h1>Resultados encontrados...</h1></center>
+    <br>
+    {% if search %}
+        <center><h3>Tu buscaste "{{search}}"</h3>
+        <br>
+        {% for result in results %}
+        <span>{{result.nombre}} - {{result.educacion}}</span><br>
+        {% endfor %}
+        </center>
+    {% else %}
+        <h4>No hay resultados</h4>
+    {% endif%}
+{% endblock contenido %}

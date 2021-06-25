@@ -1,0 +1,9 @@
+{% extends 'base.html' %} 
+
+{% block contenido %} 
+<h2>
+    <br>
+    Pago aceptado. Gracias por comprar  <strong style="color: red;">{{user.username}}</strong>!<br><br>
+    <a type="button" class="btn btn-dark" href="{% url 'home' %}">Ir a home</a>
+</h2>
+{% endblock contenido %} 

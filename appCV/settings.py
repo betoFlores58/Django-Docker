@@ -8,7 +8,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'n_5onnt)6@)kx-_^&%*-h%&gywcp5p(^5njt)&3jy*try%qkl2'
+# SECRET_KEY = 'n_5onnt)6@)kx-_^&%*-h%&gywcp5p(^5njt)&3jy*try%qkl2'
+SECRET_KEY = os.environ.get('datosKey')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -16,7 +17,19 @@ DEBUG = True
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+#------------------------------
+ACCOUNT_EMAIL_VERIFICATION = True
 
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_USERNAME_REQUIRED = False 
+
+ACCOUNT_AUTHENTICATION_METHOD = 'email' 
+
+DEFAULT_FROM_EMAIL = 'alberto@django.com'
+#---------------------------------
 ALLOWED_HOSTS = ['*']
 
 #REDIRIGE AL HOME DESPUES DE LOGUEARTE Y DESLOGUEARTE
@@ -28,15 +41,17 @@ LOGOUT_REDIRECT_URL = 'home'
 #from decouple import config
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.googlemail.com'
-EMAIL_PORT = os.environ.get('PORT_EMAIL')
-EMAIL_USE_TLS = True
+EMAIL_PORT =  587
 EMAIL_HOST_USER = os.environ.get('USER_MAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('USER_MAIL_PASSWORD')
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # Application definition
 INSTALLED_APPS = [
     'crispy_forms',
+    'tienda',
+    'orders',
     'cv',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +59,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,9 +97,12 @@ TEMPLATES = [
         },
     },
 ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 WSGI_APPLICATION = 'appCV.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -136,7 +161,14 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_ROOT = "/var/www/myexplame/static/"
 
+STRIPE_TEST_PUBLISHABLE_KEY=os.environ.get('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_TEST_SECRET_KEY=os.environ.get('STRIPE_TEST_SECRET_KEY')
+
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+MEDIA_URL = '/img/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')

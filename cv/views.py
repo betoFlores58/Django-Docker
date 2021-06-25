@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView,TemplateView, FormView,CreateView,UpdateView, DeleteView
-from .models import Modelo
+from .models import Modelo,Comment
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate,login
@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponseRedirect, JsonResponse, request
 from .forms import ResetPasswordForm
+from django.db.models import Q
 
 # Create your views here.
 class HomeListView(ListView):
@@ -17,17 +18,44 @@ class HomeListView(ListView):
     template_name = 'home.html'
     context_object_name = 'Modelo'  
 
-class CVListView(TemplateView):
+class CVListView(ListView):
     model = Modelo
     template_name = 'cv.html'
     context_object_name = 'Modelo'
+
+class ExtraView(ListView):
+    model = Modelo
+    template_name = 'extra.html'
+    context_object_name = 'model'
+
+def search_results(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        results = Modelo.objects.filter(
+            Q(nombre__contains=search)|Q(nombre__icontains=search)
+        )
+        return render(request,'extra.html',{'search':search,'results':results})
+    else:
+        return render(request,'extra.html',{})
+
+
+# class ComentarioCreateView(CreateView):
+#     model = Comment
+#     form_class = CommentForm
+#     template_name = "agregar_comentario.html"
+#     success_url = reverse_lazy('extra')
+
+#     def form_valid(self, form):
+#         form.instance.name = self.request.user.username
+#         form.instance.post_id = self.kwargs['pk']
+#         return super().form_valid(form)
 
 class ITLView(TemplateView):
     model = Modelo
     template_name = 'itl.html'
     context_object_name = 'Modelo'
 
-class cvCreateView(CreateView):
+class cvCreateView(LoginRequiredMixin,CreateView):
     model = Modelo
     template_name = "agregar.html"
     fields = '__all__'
@@ -38,14 +66,14 @@ class cvUpdateView(LoginRequiredMixin,UpdateView):
     model = Modelo
     template_name = "editar.html"
     fields = '__all__'
-    context_object_name = 'Modelo'
-    success_url = reverse_lazy('home')
+    context_object_name = 'model'
+    success_url = reverse_lazy('extra')
 
 class cvDeleteView(LoginRequiredMixin,DeleteView):
     model = Modelo
     template_name = 'eliminar.html'
-    context_object_name = 'Modelo'
-    success_url = reverse_lazy('home')
+    context_object_name = 'model'
+    success_url = reverse_lazy('extra')
 
 #Registro para crear nuevo usuario
 def registro(request):

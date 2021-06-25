@@ -10,8 +10,7 @@
     <div class="container">
         <div class="d-grid gap-2 mx-auto">
             <a class="btn btn-success" href="{% url 'cv' %}" role="button">Curriculum Vitae</a>
-            <a class="btn btn-warning" href="{% url 'registro' %}" role="button"><strong>+</strong> Crear otro usuario</a>
-            <a class="btn btn-danger" href="{% url 'itl' %}" role="button">TecNM Campus Laguna Info</a>
+            <a class="btn btn-warning" href="{% url 'account_signup' %}" role="button"><strong>+</strong> Crear un usuario</a>            <a class="btn btn-danger" href="{% url 'itl' %}" role="button">TecNM Campus Laguna Info</a>
         </div>
     </div>
     <br>
@@ -36,22 +35,22 @@
             <a class="btn btn-success shake-crazy" href="{% url 'nuevo' %}" role="button">Add new CV</a>
         </div>
         &nbsp;
-        <a class="btn btn-warning" role="button">Editar</a>
-        <a class="btn btn-danger" role="button">Eliminar</a>
     </div>
     <br>
 {% else %}
     <center>
         <h2><strong>NECESITAS INICIAR SÈSION</strong></h2>
-        <a class="btn btn-warning" href="{% url 'registro' %}" role="button"><strong>+</strong> Crear un usuario</a>
+        <a class="btn btn-warning" href="{% url 'account_signup' %}" role="button"><strong>+</strong> Crear un usuario</a>   
     </center>
 {% endif %}
 <br>
 <footer style="padding: 18px; border: 10px;border-style: dashed;border-width: 10px;border-color: purple;">
     <p><strong>Autor:</strong> Alberto Villarreal Flroes -> <a href="https://github.com/betoFlores58"><i class="fa fa-github"></i>GitHub</a></p>
+    <a class="btn btn-warning" href="{% url 'extra' %}" role="button"><strong>+</strong>Extra</a>   
     <p>
         <script src="{% static '/js/hora.js' %}" type="text/javascript"></script>
     </p>
+
 </footer>
 {% endblock %}
 </body>
